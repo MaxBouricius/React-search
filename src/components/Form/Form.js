@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { filterGamesByTitle, filterGamesByPlatform } from "../../helpers/filterGames";
+import { filterGamesByTitle, filterGamesByPlatform, filterGamesByGenre } from "../../helpers/filterGames";
 import { games } from "../../data/games";
 import "./Form.css"
 const Form = () => {
@@ -18,6 +18,12 @@ const Form = () => {
             label: "Platform",
             filter: filterGamesByPlatform
         },
+        {
+            id: "genre",
+            value: "",
+            label: "Genre",
+            filter: filterGamesByGenre
+        },
     ])
 
     let dispatch = useDispatch();
@@ -34,7 +40,7 @@ const Form = () => {
 
     const inputsToBeRendered = inputs.map(objectFromStateArray => {
         return (
-            <div className="form__wrapper">
+            <div key={objectFromStateArray.id}className="form__wrapper">
                 <label className="form__label" htmlFor={objectFromStateArray.id}>{objectFromStateArray.label}</label>
                 <input className="form__input" onChange={onInputChanged} id={objectFromStateArray.id} type="text" value={objectFromStateArray.value} />
             </div>

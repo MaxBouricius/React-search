@@ -21,4 +21,6 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    gap: 4rem;
+    flex-wrap: wrap;
 }
